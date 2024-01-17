@@ -1,0 +1,6 @@
+{
+  "/api/thumbnail-upload": {
+    "target": "http://localhost:6000",
+    "secure": false
+  }
+}
