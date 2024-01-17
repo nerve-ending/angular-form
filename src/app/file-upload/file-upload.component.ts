@@ -24,7 +24,7 @@ export class FileUploadComponent {
     if (file) {
       this.fileName = file.name;
       const formData = new FormData();
-      formData.append('thumbnail', file);
+      formData.append('file', file);
       this.http
         .post('/api/thumbnail-upload', formData)
         .pipe(
