@@ -178,7 +178,39 @@
 </style>
 
 <main class="main">
-  <app-file-upload></app-file-upload>
+  <div [formGroup]="form">
+    <mat-radio-group fromControlName="courseType">
+      <mat-radio-button value="free">Free</mat-radio-button>
+      <mat-radio-button value="premium">Premium</mat-radio-button>
+    </mat-radio-group>
+
+    <app-file-upload></app-file-upload>
+
+    <mat-form-field>
+      <input type="text" matInput placeholder="Price" formControlName="price" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Promotional period</mat-label>
+      <mat-date-range-input [rangePicker]="promoPicker">
+        <input
+          matStartDate
+          placeholder="Start date"
+          formControlName="promoStartAt"
+        />
+        <input matEndDate placeholder="End date" formControlName="promoEndAt" />
+      </mat-date-range-input>
+    </mat-form-field>
+
+    <mat-error *ngIf="form.errors?.['promoPeriod'] && form.dirty">
+      开始时间必须在结束时间之前
+    </mat-error>
+    <mat-date-picker-toggle
+      matSuffix
+      [for]="promoPicker"
+    ></mat-date-picker-toggle>
+    <mat-date-range-picker #promoPicker></mat-date-range-picker>
+  </div>
 </main>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
