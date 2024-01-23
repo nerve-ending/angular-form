@@ -205,10 +205,12 @@
     <mat-error *ngIf="form.errors?.['promoPeriod'] && form.dirty">
       开始时间必须在结束时间之前
     </mat-error>
-    <mat-date-picker-toggle
+
+    <mat-datepicker-toggle
       matSuffix
       [for]="promoPicker"
-    ></mat-date-picker-toggle>
+    ></mat-datepicker-toggle>
+
     <mat-date-range-picker #promoPicker></mat-date-range-picker>
   </div>
 </main>
