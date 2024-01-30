@@ -6,7 +6,14 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  AbstractControl,
+  ControlValueAccessor,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  ValidationErrors,
+  Validator,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-file-upload',
@@ -26,9 +33,14 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       multi: true,
       useExisting: FileUploadComponent,
     },
+    {
+      provide: NG_VALIDATORS,
+      multi: true,
+      useExisting: FileUploadComponent,
+    },
   ],
 })
-export class FileUploadComponent implements ControlValueAccessor {
+export class FileUploadComponent implements ControlValueAccessor, Validator {
   @Input()
   requiredFileType: string = '';
   fileName: string = '';
@@ -41,7 +53,11 @@ export class FileUploadComponent implements ControlValueAccessor {
 
   isDisabled: boolean = false;
 
+  fileUploadSuccess: boolean = false;
+
   onTouched = () => {};
+
+  onValidatorChange = () => {};
 
   handleClick(fileUpload: HTMLInputElement) {
     this.onTouched();
@@ -77,6 +93,7 @@ export class FileUploadComponent implements ControlValueAccessor {
             this.uploadProgress = 100 * (event.loaded / event.total);
           } else if (event.type == HttpEventType.Response) {
             this.onChange(this.fileName);
+            this.onValidatorChange();
           }
         });
     }
@@ -96,5 +113,26 @@ export class FileUploadComponent implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean) {
     this.isDisabled = isDisabled;
+  }
+
+  registerOnValidatorChange(onValidatorChange: () => void): void {
+    this.onValidatorChange = onValidatorChange;
+  }
+
+  validate(control: AbstractControl<any, any>): ValidationErrors | null {
+    if (this.fileUploadSuccess) {
+      return null;
+    }
+
+    let errors: any = {
+      这是自定义的错误信息: '111',
+      requiredFileType: this.requiredFileType,
+    };
+
+    if (this.fileUploadError) {
+      errors.uploadFailed = true;
+    }
+
+    return errors;
   }
 }

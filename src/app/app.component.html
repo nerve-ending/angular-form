@@ -179,7 +179,7 @@
 
 <main class="main">
   <div [formGroup]="form">
-    <mat-radio-group fromControlName="courseType">
+    <mat-radio-group formControlName="courseType">
       <mat-radio-button value="free">Free</mat-radio-button>
       <mat-radio-button value="premium">Premium</mat-radio-button>
     </mat-radio-group>
@@ -218,7 +218,11 @@
 
     <button mat-button (click)="onSubmit()">Basic</button>
     >
-    {{ form.value | json }}
+    <div class="form-val">
+      {{ form.value | json }}
+    </div>
+
+    <div class="form-val">表单验证情况：{{ form.valid }}</div>
   </div>
 </main>
 
