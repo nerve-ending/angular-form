@@ -6,6 +6,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-file-upload',
@@ -19,8 +20,15 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   templateUrl: './file-upload.component.html',
   styleUrl: './file-upload.component.scss',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: FileUploadComponent,
+    },
+  ],
 })
-export class FileUploadComponent {
+export class FileUploadComponent implements ControlValueAccessor {
   @Input()
   requiredFileType: string = '';
   fileName: string = '';
@@ -28,6 +36,17 @@ export class FileUploadComponent {
   fileUploadError: boolean = false;
 
   uploadProgress: number | null = null;
+
+  onChange = (fileName: string) => {};
+
+  isDisabled: boolean = false;
+
+  onTouched = () => {};
+
+  handleClick(fileUpload: HTMLInputElement) {
+    this.onTouched();
+    fileUpload.click();
+  }
 
   constructor(private http: HttpClient) {}
 
@@ -56,8 +75,26 @@ export class FileUploadComponent {
         .subscribe((event) => {
           if (event.type == HttpEventType.UploadProgress) {
             this.uploadProgress = 100 * (event.loaded / event.total);
+          } else if (event.type == HttpEventType.Response) {
+            this.onChange(this.fileName);
           }
         });
     }
+  }
+
+  writeValue(value: any) {
+    this.fileName = value;
+  }
+
+  registerOnChange(fn: any) {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any) {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean) {
+    this.isDisabled = isDisabled;
   }
 }

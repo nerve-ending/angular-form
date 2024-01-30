@@ -16,6 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
@@ -33,6 +34,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatInputModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatButtonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -46,8 +48,17 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group(
       {
-        courseType: ['', Validators.required],
-        price: ['', Validators.required],
+        courseType: ['premium', Validators.required],
+        price: [
+          null,
+          [
+            Validators.required,
+            Validators.min(1),
+            Validators.max(9999),
+            Validators.pattern('[0-9]+'),
+          ],
+        ],
+        thumbnail: [null],
         promoStartAt: ['', Validators.required],
         promoEndAt: ['', Validators.required],
       },
@@ -69,6 +80,7 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('form', this.form.value);
     if (this.form.valid) {
       // 处理表单提交逻辑
     }
