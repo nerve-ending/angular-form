@@ -5,5 +5,9 @@
     <mat-hint align="end"> {{ title.value.length }} / 60 </mat-hint>
   </mat-form-field>
 
-  <mat-error *ngIf="courseTitle.errors">课程名字已经被使用</mat-error>
+  <mat-error
+    *ngIf="courseTitle.errors !== null && courseTitle.errors['titleExists']"
+  >
+    课程名字已经被使用
+  </mat-error>
 </div>
