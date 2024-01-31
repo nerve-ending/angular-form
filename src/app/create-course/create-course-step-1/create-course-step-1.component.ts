@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { courseTitleValidator } from '../../validators/course-title.validator';
 
 @Component({
   selector: 'create-course-step-1',
@@ -23,10 +24,20 @@ import { MatInputModule } from '@angular/material/input';
   styleUrls: ['./create-course-step-1.component.scss'],
 })
 export class CreateCourseStep1Component implements OnInit {
+  courseTitle: { errors: any } = { errors: null };
+
   form = this.fb.group({
     title: [
       '',
-      [Validators.required, Validators.minLength(5), Validators.maxLength(60)],
+      {
+        validators: [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(60),
+        ],
+        asyncValidators: [courseTitleValidator], //异步验证器
+        updateOn: 'blur',
+      },
     ],
   });
 
