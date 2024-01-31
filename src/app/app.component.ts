@@ -18,6 +18,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { AddressFormComponent } from './address-form/address-form.component';
+import { CreateCourseComponent } from './create-course/create-course.component';
 
 @Component({
   selector: 'app-root',
@@ -37,6 +38,7 @@ import { AddressFormComponent } from './address-form/address-form.component';
     MatDatepickerModule,
     MatButtonModule,
     AddressFormComponent,
+    CreateCourseComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

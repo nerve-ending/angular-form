@@ -1,0 +1,7 @@
+<div [formGroup]="form">
+  <mat-form-field>
+    <input matInput placeholder="课程标题" formControlName="title" #title />
+
+    <mat-hint align="end"> {{ title.value.length }} / 60 </mat-hint>
+  </mat-form-field>
+</div>
