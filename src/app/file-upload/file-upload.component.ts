@@ -53,7 +53,7 @@ export class FileUploadComponent implements ControlValueAccessor, Validator {
 
   isDisabled: boolean = false;
 
-  fileUploadSuccess: boolean = false;
+  fileUploadSuccess: boolean = true;
 
   onTouched = () => {};
 

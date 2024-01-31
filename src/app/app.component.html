@@ -1,8 +1,8 @@
 <main class="main">
-  <div>
-    <address-form></address-form>
-  </div>
   <div [formGroup]="form">
+    <div>
+      <address-form legend="地址" formControlName="address"></address-form>
+    </div>
     <div>
       <mat-radio-group formControlName="courseType" color="primary">
         <mat-radio-button value="free">Free</mat-radio-button>

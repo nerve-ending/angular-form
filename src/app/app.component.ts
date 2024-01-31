@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group(
       {
-        courseType: ['premium', Validators.required],
+        courseType: ['premium', [Validators.required]],
         price: [
           null,
           [
@@ -61,8 +61,9 @@ export class AppComponent implements OnInit {
           ],
         ],
         thumbnail: [null],
-        promoStartAt: ['', Validators.required],
-        promoEndAt: ['', Validators.required],
+        promoStartAt: ['', [Validators.required]],
+        promoEndAt: ['', [Validators.required]],
+        address: [null, [Validators.required]],
       },
       {
         validators: this.promoPeriodValidator,
@@ -82,7 +83,7 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('form', this.form.value);
+    console.log('form', this.form);
     if (this.form.valid) {
       // 处理表单提交逻辑
     }

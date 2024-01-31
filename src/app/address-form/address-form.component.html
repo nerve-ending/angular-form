@@ -7,6 +7,7 @@
         matInput
         placeholder="Address Line 1"
         formControlName="addressLine1"
+        (blur)="onTouched()"
       />
     </mat-form-field>
   </div>
@@ -16,20 +17,30 @@
         matInput
         placeholder="Address Line 2"
         formControlName="addressLine2"
+        (blur)="onTouched()"
       />
     </mat-form-field>
   </div>
   <div>
     <mat-form-field>
-      <input matInput placeholder="Zip Code" formControlName="zipCode" />
+      <input
+        matInput
+        placeholder="Zip Code"
+        formControlName="zipCode"
+        (blur)="onTouched()"
+      />
     </mat-form-field>
   </div>
   <div>
     <mat-form-field>
-      <input matInput placeholder="City" formControlName="city" />
+      <input
+        matInput
+        placeholder="City"
+        formControlName="city"
+        (blur)="onTouched()"
+      />
     </mat-form-field>
   </div>
-  <div class="form-val">
-    {{ form.value | json }}
-  </div>
+  <div class="form-val">表单值：{{ form.value | json }}</div>
+  <div class="form-val">校验情况：{{ form.valid }}</div>
 </fieldset>
