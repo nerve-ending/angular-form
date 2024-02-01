@@ -31,6 +31,19 @@
     </mat-form-field>
   </div>
 
+  <mat-checkbox color="primary" formControlName="downloadsAllowed">
+    允许下载？
+  </mat-checkbox>
+
+  <div>
+    <mat-form-field appearance="outline">
+      <textarea
+        matInput
+        placeholder="描述"
+        formControlName="longDescription"
+      ></textarea>
+    </mat-form-field>
+  </div>
   <div class="form-val">
     {{ form.value | json }}
   </div>

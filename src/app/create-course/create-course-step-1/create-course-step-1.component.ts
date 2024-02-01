@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { courseTitleValidator } from '../../validators/course-title.validator';
 import { CoursesService } from '../../validators/courses.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'create-course-step-1',
@@ -22,6 +23,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
+    MatCheckboxModule,
   ],
   providers: [CoursesService], //解决了ERROR NullInjectorError问题
   templateUrl: './create-course-step-1.component.html',
@@ -42,6 +44,8 @@ export class CreateCourseStep1Component implements OnInit {
       },
     ],
     releasedAt: [new Date(), [Validators.required]],
+    downloadsAllowed: [false, [Validators.requiredTrue]],
+    longDescription: ['', [Validators.required, Validators.minLength(3)]],
   });
 
   constructor(private fb: FormBuilder, private courses: CoursesService) {}
