@@ -1,9 +1,3 @@
-// import express from 'express';
-// import { getAllCourses, getCourseById } from './get-courses.route';
-// import { searchLessons } from './search-lessons.route';
-// import { getCourseCategories } from './course-categories.route';
-// import multer from 'multer';
-
 const express = require('express');
 const { getAllCourses, getCourseById } = require('./get-courses.route');
 const { searchLessons } = require('./search-lessons.route');

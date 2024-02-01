@@ -9,8 +9,7 @@ export function courseTitleValidator(
     return courses.findAllCourses().pipe(
       map((courses: any[]) => {
         const course = courses.find(
-          (course: { description: any }) =>
-            course.description == control.value.toLowerCase()
+          (course: { description: any }) => course.description == control.value
         );
         return course ? { titleExists: true } : null;
       })
