@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { FileUploadComponent } from './file-upload/file-upload.component';
+import { FileUploadComponent } from './create-course/create-course-step-2/file-upload/file-upload.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatRadioModule } from '@angular/material/radio';
@@ -17,7 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-import { AddressFormComponent } from './address-form/address-form.component';
+import { AddressFormComponent } from './create-course/create-course-step-2/address-form/address-form.component';
 import { CreateCourseComponent } from './create-course/create-course.component';
 
 @Component({

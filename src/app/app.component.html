@@ -1,66 +1,6 @@
 <main class="main">
   <div [formGroup]="form">
     <create-course></create-course>
-
-    <div>
-      <address-form legend="地址" formControlName="address"></address-form>
-    </div>
-    <div>
-      <mat-radio-group formControlName="courseType" color="primary">
-        <mat-radio-button value="free">Free</mat-radio-button>
-        <mat-radio-button value="premium">Premium</mat-radio-button>
-      </mat-radio-group>
-    </div>
-
-    <app-file-upload
-      requiredFileType="image/png"
-      formControlName="thumbnail"
-    ></app-file-upload>
-
-    <div>
-      <mat-form-field>
-        <input
-          type="text"
-          matInput
-          placeholder="Price"
-          formControlName="price"
-        />
-      </mat-form-field>
-    </div>
-
-    <div>
-      <mat-form-field>
-        <mat-label>选择日期</mat-label>
-        <mat-date-range-input [rangePicker]="promoPicker">
-          <input
-            matStartDate
-            placeholder="Start date"
-            formControlName="promoStartAt"
-          />
-          <input
-            matEndDate
-            placeholder="End date"
-            formControlName="promoEndAt"
-          />
-        </mat-date-range-input>
-      </mat-form-field>
-
-      <mat-error *ngIf="form.errors?.['promoPeriod'] && form.dirty">
-        开始时间必须在结束时间之前
-      </mat-error>
-
-      <mat-datepicker-toggle
-        matSuffix
-        [for]="promoPicker"
-      ></mat-datepicker-toggle>
-
-      <mat-date-range-picker #promoPicker></mat-date-range-picker>
-    </div>
-    <button mat-flat-button (click)="onSubmit()" color="primary">
-      验证表单
-    </button>
-    <div class="form-val">表单值：{{ form.value | json }}</div>
-    <div class="form-val">校验情况：{{ form.valid }}</div>
   </div>
 </main>
 

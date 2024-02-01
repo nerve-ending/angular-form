@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { FileUploadComponent } from './file-upload/file-upload.component';
+import { FileUploadComponent } from './create-course/create-course-step-2/file-upload/file-upload.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {

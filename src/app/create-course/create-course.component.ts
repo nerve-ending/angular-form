@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
 import { CreateCourseStep1Component } from './create-course-step-1/create-course-step-1.component';
+import { CreateCourseStep2Component } from './create-course-step-2/create-course-step-2.component';
 
 @Component({
   selector: 'create-course',
@@ -12,6 +13,7 @@ import { CreateCourseStep1Component } from './create-course-step-1/create-course
     MatStepperModule,
     MatButtonModule,
     CreateCourseStep1Component,
+    CreateCourseStep2Component,
   ],
   templateUrl: './create-course.component.html',
   styleUrls: ['./create-course.component.scss'],
