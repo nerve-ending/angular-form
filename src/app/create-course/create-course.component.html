@@ -1,7 +1,11 @@
 <div class="create-course-panel data-form">
   <h2 class="title">Create New Course</h2>
 
-  <mat-horizontal-stepper class="mat-elevation-z5" labelPosition="bottom">
+  <mat-horizontal-stepper
+    [linear]="true"
+    class="mat-elevation-z5"
+    labelPosition="bottom"
+  >
     <mat-step [stepControl]="step1.form" errorMessage="着陆页信息有误">
       <ng-template matStepLabel>着陆页详情</ng-template>
 
