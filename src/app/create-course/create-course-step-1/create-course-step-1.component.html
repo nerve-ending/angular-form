@@ -1,13 +1,37 @@
 <div [formGroup]="form">
-  <mat-form-field>
-    <input matInput placeholder="课程标题" formControlName="title" #title />
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="课程标题" formControlName="title" #title />
 
-    <mat-hint align="end"> {{ title.value.length }} / 60 </mat-hint>
-  </mat-form-field>
+      <mat-hint align="end"> {{ title.value.length }} / 60 </mat-hint>
 
-  <mat-error
-    *ngIf="courseTitle.errors !== null && courseTitle.errors['titleExists']"
-  >
-    课程名字已经被使用
-  </mat-error>
+      <mat-error
+        *ngIf="courseTitle.errors !== null && courseTitle.errors['titleExists']"
+      >
+        课程名字已经被使用
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="releaseDatePicker"
+        formControlName="releasedAt"
+        placeholder="发布日期"
+      />
+
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="$any(releaseDatePicker)"
+      ></mat-datepicker-toggle>
+
+      <mat-datepicker #releaseDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="form-val">
+    {{ form.value | json }}
+  </div>
 </div>
