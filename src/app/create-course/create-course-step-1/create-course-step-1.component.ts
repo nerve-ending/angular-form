@@ -13,7 +13,7 @@ import { CoursesService } from '../../validators/courses.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
-import { Observable } from 'rxjs';
+import { Observable, filter } from 'rxjs';
 
 interface CourseCategory {
   code: string;
@@ -64,6 +64,26 @@ export class CreateCourseStep1Component implements OnInit {
   constructor(private fb: FormBuilder, private courses: CoursesService) {}
   ngOnInit(): void {
     this.courseCategories$ = this.courses.findCourseCategories();
+
+    const draft = localStorage.getItem('STEP_1');
+
+    if (draft) {
+      this.form.setValue(JSON.parse(draft));
+    }
+
+    this.form.valueChanges
+      .pipe(
+        //this.form.valueChanges 返回的是一个 Observable，表示一个可以被订阅的数据流。
+        filter(() => this.form.valid)
+      )
+      .subscribe((val) => {
+        // 如果只需要进行简单的条件判断，例如只在某个条件下执行一个语句块，使用 if 语句可能更为适合。
+        // 如果需要在数据流中进行一系列的处理，或者需要将多个操作符组合起来，使用 filter 操作符更有优势。
+        // if (this.form.valid) {  //这种方式也是可以的
+        //   localStorage.setItem('STEP_1', JSON.stringify(val))
+        // }
+        return localStorage.setItem('STEP_1', JSON.stringify(val));
+      });
   }
 
   get courseTitle() {
