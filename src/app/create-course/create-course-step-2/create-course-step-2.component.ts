@@ -68,7 +68,16 @@ export class CreateCourseStep2Component implements OnInit {
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.form.valueChanges.subscribe((val) => {
+      const priceControl = this.form.controls['price'];
+      if (val.courseType == 'free' && priceControl.enabled) {
+        priceControl.disable({ emitEvent: false }); // 记住，填写括号里的是因为不让这个disable事件再发起新的事件，不然会无限循环
+      } else if (val.courseType == 'premium' && priceControl.disabled) {
+        priceControl.enable({ emitEvent: false });
+      }
+    });
+  }
 
   promoPeriodValidator(formGroup: FormGroup) {
     const promoStartAt = formGroup.get('promoStartAt')?.value;
