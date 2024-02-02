@@ -45,33 +45,30 @@ import { CreateCourseComponent } from './create-course/create-course.component';
 })
 export class AppComponent implements OnInit {
   title = 'angular-demo';
-  form!: FormGroup;
-
+  form = this.fb.group(
+    {
+      courseType: ['premium', [Validators.required]],
+      price: [
+        null,
+        [
+          Validators.required,
+          Validators.min(1),
+          Validators.max(9999),
+          Validators.pattern('[0-9]+'),
+        ],
+      ],
+      thumbnail: [null],
+      promoStartAt: ['', [Validators.required]],
+      promoEndAt: ['', [Validators.required]],
+      address: [null, [Validators.required]],
+    },
+    {
+      validators: this.promoPeriodValidator,
+    }
+  );
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {
-    this.form = this.fb.group(
-      {
-        courseType: ['premium', [Validators.required]],
-        price: [
-          null,
-          [
-            Validators.required,
-            Validators.min(1),
-            Validators.max(9999),
-            Validators.pattern('[0-9]+'),
-          ],
-        ],
-        thumbnail: [null],
-        promoStartAt: ['', [Validators.required]],
-        promoEndAt: ['', [Validators.required]],
-        address: [null, [Validators.required]],
-      },
-      {
-        validators: this.promoPeriodValidator,
-      }
-    );
-  }
+  ngOnInit(): void {}
 
   promoPeriodValidator(formGroup: FormGroup) {
     const promoStartAt = formGroup.get('promoStartAt')?.value;
