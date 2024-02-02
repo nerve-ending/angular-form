@@ -59,7 +59,7 @@ export class CreateCourseStep2Component implements OnInit {
       thumbnail: [null],
       promoStartAt: ['', [Validators.required]],
       promoEndAt: ['', [Validators.required]],
-      address: [null, [Validators.required]],
+      // address: [null, [Validators.required]],
     },
     {
       validators: this.promoPeriodValidator,

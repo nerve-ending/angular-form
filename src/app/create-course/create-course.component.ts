@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatButtonModule } from '@angular/material/button';
@@ -27,4 +27,10 @@ import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
     },
   ],
 })
-export class CreateCourseComponent {}
+export class CreateCourseComponent implements OnInit {
+  ngOnInit(): void {}
+
+  submit(step1: any, step2: any, step3: any) {
+    console.log('step1', step1);
+  }
+}

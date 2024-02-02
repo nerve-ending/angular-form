@@ -37,7 +37,8 @@
         <button
           mat-raised-button
           color="primary"
-          [disabled]="!step3.form.valid"
+          [disabled]="!step3.form.valid && step3.lessons.length > 0"
+          (click)="submit(step1.form.value, step2.form.value, step3.form.value)"
         >
           创建课程
         </button>
